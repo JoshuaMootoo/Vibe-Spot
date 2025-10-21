@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify&family=Press+Start+2P&display=swap');
+
+/* Pixel-themed UI variables */
+:root{
+  --bg-0: #071022;
+  --bg-1: #0b1224;
+  --panel: #0f1a2b;
+  --accent: #ffd166;
+  --accent-2: #6fe7ff;
+  --muted: #9fb0c8;
+  --shadow: #04101a;
+  --pixel-gap: 6px; /* consistent pixel spacing */
+  --tile-size: 48px;
+  --radius: 0; /* keep corners blocky */
+}
+
+/* Base / page */
+html,body{
+  height:100%;
+  margin:0;
+  background: linear-gradient(180deg,var(--bg-0),var(--bg-1));
+  color:var(--accent);
+  font-family: "Pixelify","Press Start 2P", monospace;
+  font-size:14px;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Make pixel graphics/rendering crisp when using images or SVGs */
+.pixelated, img, svg {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  shape-rendering: crispEdges;
+}
+
+/* Headings */
+h1,h2,h3{
+  margin:0 0 12px 0;
+  color:var(--accent);
+  text-shadow: 2px 2px 0 var(--shadow);
+  letter-spacing:1px;
+}
+h1{ font-size:20px; }
+h2{ font-size:16px; }
+h3{ font-size:13px; }
+
+/* Containers / cards */
+.container{
+  padding:16px;
+}
+.pixel-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));
+  border:4px solid var(--panel);
+  box-shadow: 8px 8px 0 var(--shadow);
+  padding:12px;
+  border-radius:var(--radius);
+  color:var(--accent);
+}
+
+/* Strong pixel border util */
+.pixel-border{
+  border:6px solid var(--accent);
+  background:var(--panel);
+  box-shadow: 10px 10px 0 var(--shadow);
+  padding:8px;
+  display:inline-block;
+  border-radius:var(--radius);
+}
+
+/* Buttons */
+.pixel-btn{
+  display:inline-block;
+  background: linear-gradient(180deg,var(--panel), #071428);
+  color:var(--accent);
+  padding:8px 14px;
+  border:4px solid var(--accent);
+  box-shadow: 0 8px 0 var(--shadow);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  cursor:pointer;
+  user-select:none;
+  font-size:13px;
+  line-height:1;
+  border-radius:var(--radius);
+}
+.pixel-btn:active{
+  transform: translateY(6px);
+  box-shadow:none;
+}
+.pixel-btn[disabled]{
+  opacity:0.6;
+  cursor:not-allowed;
+  box-shadow:none;
+  transform:none;
+}
+
+/* Links */
+.retro-link{
+  color:var(--accent-2);
+  text-decoration:none;
+  text-shadow: 2px 2px 0 var(--shadow);
+}
+.retro-link:hover{
+  filter:brightness(1.1);
+  text-decoration:underline;
+}
+
+/* Inputs */
+.pixel-input{
+  background:var(--bg-1);
+  color:var(--accent);
+  border:3px solid var(--muted);
+  padding:8px 10px;
+  font-family:inherit;
+  font-size:13px;
+  outline:none;
+  box-shadow: 4px 4px 0 var(--shadow) inset;
+  border-radius:var(--radius);
+}
+.pixel-input:focus{
+  border-color:var(--accent-2);
+  box-shadow: 4px 4px 0 var(--shadow) inset, 0 0 6px rgba(111,231,255,0.12);
+}
+
+/* Grid of tiles (for game-like layout) */
+.tile-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--tile-size), 1fr));
+  gap: var(--pixel-gap);
+}
+.tile{
+  width:100%;
+  min-height:var(--tile-size);
+  background:linear-gradient(180deg, #0a1624, #08121a);
+  border:4px solid var(--panel);
+  box-shadow: 6px 6px 0 var(--shadow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent);
+  font-size:12px;
+  border-radius:var(--radius);
+}
+
+/* HUD / status bars */
+.hud{
+  position:fixed;
+  top:12px;
+  left:12px;
+  display:flex;
+  gap:8px;
+  z-index:50;
+}
+.hud .pill{
+  background:var(--panel);
+  border:3px solid var(--muted);
+  padding:6px 10px;
+  box-shadow: 6px 6px 0 var(--shadow);
+  color:var(--accent);
+  font-size:12px;
+}
+
+/* Pixel divider / scanlines */
+.pixel-divider{
+  height:8px;
+  background:repeating-linear-gradient(
+    180deg,
+    rgba(255,255,255,0.01) 0 2px,
+    transparent 2px 4px
+  );
+  margin:8px 0;
+  border-bottom:2px solid rgba(255,255,255,0.02);
+}
+
+/* Glowing accents */
+.glow{
+  position:relative;
+}
+.glow::after{
+  content:"";
+  position:absolute;
+  left:-6px;
+  right:-6px;
+  top:-6px;
+  bottom:-6px;
+  z-index:-1;
+  filter: blur(6px);
+  background: linear-gradient(90deg, rgba(111,231,255,0.12), rgba(255,209,102,0.06));
+  border-radius:3px;
+  pointer-events:none;
+}
+
+/* Utility small text and muted */
+.muted{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* Make clickable controls keyboard-friendly */
+.pixel-btn:focus,
+.pixel-input:focus,
+.retro-link:focus{
+  outline:3px dashed rgba(255,209,102,0.18);
+  outline-offset:4px;
+}
+
+/* Tiny responsive tweaks */
+@media (max-width:480px){
+  :root{ --tile-size:40px; --pixel-gap:4px; }
+  h1{ font-size:16px; }
+  .pixel-btn{ padding:6px 10px; font-size:12px; }
+}
+
+/* helper to visually align "pixels" by snapping transforms to integer pixels */
+.pixel-snapped{
+  transform: translateZ(0);
+  image-rendering: pixelated;
+}
+
+/* end of stylesheet */
