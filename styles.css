@@ -5,6 +5,12 @@
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	overscroll-behavior: none;
+	font-family: 'Roboto'
+}
+
+:root {
+	--primary: #1A1C2C;
+	--secondary: #FF2E88
 }
 
 a,a:link,a:visited,.a:hover,.a:focus,a:active{
@@ -19,3 +25,21 @@ a,a:link,a:visited,.a:hover,.a:focus,a:active{
 	right: 0;
 	bottom: 0;
 }	
+
+.add {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	input {
+		-webkit-appearance: none;
+		appearance: none;
+		border: 0;
+		font-size: 14px;
+		padding: 10px 14px;
+		border-radius: 40px;
+		border: 2px solid var(--secondary);
+		min-width: 250px;
+		background: rgba(255,255,255,0.9)
+	}
+}
